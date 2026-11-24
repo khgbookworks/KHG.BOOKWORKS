@@ -1,4 +1,4 @@
-window.KHG={API:"PASTE_NEW_APPS_SCRIPT_WEB_APP_URL_HERE",GA:"G-9EHTV090FL",EMAIL:"khg.bookworks@gmail.com",FIVERR:"https://www.fiverr.com/khg_bookworks",PORTRAIT:"assets/harun.png",PROJECTS:[
+window.KHG={API:"https://script.google.com/macros/s/AKfycbzq3MwI4Q9vwLWt-XyvasKOJXUPlqjT3XzCSjYz8yBunCVbVAoASsGOmjBuZ6gYXrU4/exec",GA:"G-9EHTV090FL",EMAIL:"khg.bookworks@gmail.com",FIVERR:"https://www.fiverr.com/khg_bookworks",PORTRAIT:"assets/harun.png",PROJECTS:[
 {title:"The House of Blackthorn",category:"Gothic Horror",image:"assets/covers/house-of-blackthorn.svg",description:"A gothic horror concept built around botanical detail, atmosphere and an old-house mystery.",kind:"Concept"},
 {title:"A Scandal in Silk & Shadows",category:"Historical Romance",image:"assets/covers/silk-and-shadows.svg",description:"A period romance concept with elegant typography and a restrained ornamental frame.",kind:"Concept"},
 {title:"Beneath Pale Waters",category:"Suspense Thriller",image:"assets/covers/beneath-pale-waters.svg",description:"A quiet, unsettling thriller direction using water, negative space and a single focal point.",kind:"Concept"},
