@@ -1,11 +1,9 @@
-window.KHG={
-  API:'https://script.google.com/macros/s/AKfycbzq3MwI4Q9vwLWt-XyvasKOJXUPlqjT3XzCSjYz8yBunCVbVAoASsGOmjBuZ6gYXrU4/exec',
-  GA:'G-9EHTV090FL',
-  EMAIL:'khg.bookworks@gmail.com',
-  FIVERR:'https://www.fiverr.com/khg_bookworks',
-  SAMPLES:[
-    {title:'Your First Project',author:'Author name',service:'Book Cover Design',description:'Add your real project in the Projects sheet and set Status to Approved.'},
-    {title:'Second Project',author:'Author name',service:'Book Editing',description:'Each card shows front, 3D, back and full wrap views.'},
-    {title:'Third Project',author:'Author name',service:'Interior Formatting',description:'Paste Google Drive image links into the sheet.'}
-  ]
-};
+window.KHG={API:"PASTE_NEW_APPS_SCRIPT_WEB_APP_URL_HERE",GA:"G-9EHTV090FL",EMAIL:"khg.bookworks@gmail.com",FIVERR:"https://www.fiverr.com/khg_bookworks",PORTRAIT:"assets/harun.png",PROJECTS:[
+{title:"The House of Blackthorn",category:"Gothic Horror",image:"assets/covers/house-of-blackthorn.svg",description:"A gothic horror concept built around botanical detail, atmosphere and an old-house mystery.",kind:"Concept"},
+{title:"A Scandal in Silk & Shadows",category:"Historical Romance",image:"assets/covers/silk-and-shadows.svg",description:"A period romance concept with elegant typography and a restrained ornamental frame.",kind:"Concept"},
+{title:"Beneath Pale Waters",category:"Suspense Thriller",image:"assets/covers/beneath-pale-waters.svg",description:"A quiet, unsettling thriller direction using water, negative space and a single focal point.",kind:"Concept"},
+{title:"Secrets of the Gilded Parlor",category:"Historical Mystery",image:"assets/covers/gilded-parlor.svg",description:"A richly toned mystery concept with a vintage parlor motif and classic title treatment.",kind:"Concept"},
+{title:"The Velocity of Solitude",category:"Literary Fiction",image:"assets/covers/velocity-of-solitude.svg",description:"A minimal literary direction focused on movement, isolation and a strong typographic voice.",kind:"Concept"},
+{title:"The Architecture of Clarity",category:"Non-fiction",image:"assets/covers/architecture-of-clarity.svg",description:"A clean non-fiction concept with architectural linework and confident hierarchy.",kind:"Concept"},
+{title:"From Hawking to Potential",category:"Personal Development",image:"assets/covers/from-hawking-to-potential.svg",description:"A personal story about a boy from a royal family who sold on the street and learned to win with potential.",kind:"Author Book"}
+],SERVICES:["Developmental Editing","Line Editing","Copy Editing","Proofreading","Editorial Assessment","Beta Reading","Book Interior Formatting","Book Cover Design","Book Trailers","Ghostwriting","Book Promotion","Author Branding"]};
