@@ -1,28 +1,34 @@
-# KHG Bookworks portfolio
+# KHG Bookworks
+Premium author-services portfolio built as a lightweight static website with a Google Apps Script backend.
 
-## 1. Connect the Google Sheet (reviews, requests, projects)
-1. Create a new Google Sheet. Open Extensions > Apps Script.
-2. Paste `apps-script/Code.gs`. Change `OWNER` to your email.
-3. Run `setup` once and allow access. This creates the Reviews, Requests and Projects tabs.
-4. Deploy > New deployment > Web app. Execute as: Me. Who has access: Anyone. Copy the Web app URL.
-5. Paste that URL into `API` in `js/config.js`. Also set `EMAIL`, `FIVERR` and `GA`.
+## Pages
+Home, About, Services, Pricing, Portfolio, Reviews and Contact.
 
-## 2. Approving content
-- Reviews: set Status to Approved or Rejected in the Reviews tab. Only Approved shows on the site.
-- Projects: add rows yourself, or authors submit from the Projects page. Set Status to Approved after the project is complete.
-- Image cells accept Google Drive share links (set sharing to "Anyone with the link").
-- Requests: every new request is added to the Requests tab and emailed to you.
+## Brand
+Royal blue, white and restrained gold accents. Responsive layout, animated cover presentations, accessible navigation and reduced-motion support.
 
-## 3. Google Analytics
-Create a GA4 property, copy the measurement ID (G-XXXXXXXXXX) into `GA` in `js/config.js`.
+## Setup the Google Sheets backend
+1. Create a Google Sheet for KHG Bookworks.
+2. Open Extensions → Apps Script.
+3. Paste the complete contents of `apps-script/Code.gs`.
+4. Save and run `setup()` once. Approve the requested permissions.
+5. Deploy → New deployment → Web app. Execute as **Me** and set access to **Anyone**.
+6. Copy the deployed Web App URL into `window.KHG.API` in `js/config.js`.
+7. After any Apps Script changes, deploy a new version.
 
-## 4. Publish on GitHub Pages
-```
-git init && git add . && git commit -m "Portfolio"
-git branch -M main
-git remote add origin https://github.com/YOUR-USERNAME/khg-portfolio.git
-git push -u origin main
-```
-Then Settings > Pages > Deploy from branch > main > / (root). Your link: https://YOUR-USERNAME.github.io/khg-portfolio/
+The script creates Requests, Reviews and Projects tabs. New reviews and project approvals are marked Pending. Change Status to Approved or Rejected in the corresponding sheet. Only Approved entries are returned by the public read endpoint. Project rows must be marked Approved before display.
 
-After editing the Apps Script, redeploy with a new version so changes go live.
+## Notifications
+Project requests, reviews and project submissions are emailed to khg.bookworks@gmail.com. The script runs as the spreadsheet owner and requires MailApp authorization.
+
+## Analytics
+The GA4 measurement ID is configured in `js/config.js`. Confirm that the measurement ID belongs to the intended GA4 property.
+
+## Portrait and cover assets
+The portrait file is expected at `assets/harun.png`. Add the original portrait there to display it on About. Cover concept artwork is supplied as editable SVG files under `assets/covers/`. The From Hawking to Potential SVG is a simplified vector recreation of the supplied cover layout; replace it with the original high-resolution cover artwork when available.
+
+## Deploy
+This is a static site. GitHub Pages or Netlify can publish the repository root. Configure the deployment to use the `main` branch after the rebuild pull request has been reviewed and merged. Do not publish the placeholder Apps Script URL; deploy the script first and replace it in config.js.
+
+## Security
+No spreadsheet ID, OAuth secret or private token belongs in frontend code. Review and project moderation are performed in the private Google Sheet. Public endpoints return approved entries only.
