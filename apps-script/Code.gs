@@ -12,7 +12,19 @@ function setup() {
     if (sh.getLastRow() === 0) sh.appendRow(SHEETS[name]);
     sh.setFrozenRows(1);
   });
-  return 'KHG Bookworks sheets are ready.';
+
+  // Add approval dropdowns to every existing and future row in Reviews and Projects.
+  ['Reviews', 'Projects'].forEach(name => {
+    const sh = ss.getSheetByName(name);
+    const statusColumn = SHEETS[name].indexOf('Status') + 1;
+    const statusRule = SpreadsheetApp.newDataValidation()
+      .requireValueInList(['Pending', 'Approved', 'Rejected'], true)
+      .setAllowInvalid(false)
+      .build();
+    sh.getRange(2, statusColumn, sh.getMaxRows() - 1, 1).setDataValidation(statusRule);
+  });
+
+  return 'KHG Bookworks sheets and approval dropdowns are ready.';
 }
 function json(data, callback) {
   const body = JSON.stringify(data);
