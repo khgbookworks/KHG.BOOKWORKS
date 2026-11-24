@@ -34,13 +34,20 @@ function doGet(e) {
   const key = action === 'reviews' ? 'reviews' : 'projects';
   return json({ok:true,[key]:items}, callback);
 }
+function htmlResponse(data, token) {
+  const payload = JSON.stringify({kind:'khg-form-result', token:String(token || ''), ...data});
+  return HtmlService.createHtmlOutput('<!doctype html><html><body><script>window.parent.postMessage(' + payload + ', "*");</script></body></html>')
+    .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
+}
 function doPost(e) {
+  let formToken = '';
   const lock = LockService.getScriptLock();
   lock.waitLock(15000);
   try {
     const raw = (e && e.parameter && e.parameter.payload) || (e && e.postData && e.postData.contents) || '{}';
     const data = JSON.parse(raw);
-    if (data.website) return json({ok:true,message:'Received'});
+    formToken = data.formToken || '';
+    if (data.website) return htmlResponse({ok:true,message:'Received'}, formToken);
     const type = String(data.type || '');
     const ss = SpreadsheetApp.getActiveSpreadsheet();
     let sheet, row, subject, body;
@@ -69,9 +76,9 @@ function doPost(e) {
     if (!sheet) throw new Error('Sheet tabs are missing. Run setup() in Apps Script first.');
     sheet.appendRow(row);
     MailApp.sendEmail(OWNER_EMAIL,subject,body);
-    return json({ok:true,message:'Submission saved.'});
+    return htmlResponse({ok:true,message:'Submission saved.'}, formToken);
   } catch (err) {
-    return json({ok:false,error:String(err.message || err)});
+    return htmlResponse({ok:false,error:String(err.message || err)}, formToken);
   } finally {
     lock.releaseLock();
   }
