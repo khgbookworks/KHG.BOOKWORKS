@@ -29,8 +29,8 @@ function doGet(e) {
   if (!sh || sh.getLastRow() < 2) return json({ok:true,[action]:[]}, callback);
   const rows = sh.getDataRange().getDisplayValues();
   const headers = rows.shift();
-  const items = rows.map(row => Object.fromEntries(headers.map((h,i)=>[h,row[i]])))
-    .filter(row => String(row.Status).toLowerCase() === 'approved');
+  const items = rows.map(row => Object.fromEntries(headers.map((h,i)=>[headerKey(h),row[i]])))
+    .filter(row => String(row.status).toLowerCase() === 'approved');
   const key = action === 'reviews' ? 'reviews' : 'projects';
   return json({ok:true,[key]:items}, callback);
 }
@@ -75,6 +75,9 @@ function doPost(e) {
   } finally {
     lock.releaseLock();
   }
+}
+function headerKey(label) {
+  return String(label).trim().toLowerCase().replace(/[^a-z0-9 ]/g,'').replace(/ ([a-z])/g, (_,c)=>c.toUpperCase()).replace(/^[A-Z]/, c=>c.toLowerCase());
 }
 function requireFields(data, fields) {
   fields.forEach(key => { if (!String(data[key] || '').trim()) throw new Error('Missing required field: ' + key); });
