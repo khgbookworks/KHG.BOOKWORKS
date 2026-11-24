@@ -42,8 +42,10 @@ function htmlResponse(data, token) {
 function doPost(e) {
   let formToken = '';
   const lock = LockService.getScriptLock();
-  lock.waitLock(15000);
+  let lockAcquired = false;
   try {
+    lock.waitLock(10000);
+    lockAcquired = true;
     const raw = (e && e.parameter && e.parameter.payload) || (e && e.postData && e.postData.contents) || '{}';
     const data = JSON.parse(raw);
     formToken = data.formToken || '';
@@ -80,7 +82,7 @@ function doPost(e) {
   } catch (err) {
     return htmlResponse({ok:false,error:String(err.message || err)}, formToken);
   } finally {
-    lock.releaseLock();
+    if (lockAcquired) lock.releaseLock();
   }
 }
 function headerKey(label) {
