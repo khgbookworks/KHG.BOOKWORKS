@@ -71,7 +71,7 @@ function doGet(e) {
 }
 function htmlResponse(data, token) {
   const payload = JSON.stringify({kind:'khg-form-result', token:String(token || ''), ...data});
-  return HtmlService.createHtmlOutput('<!doctype html><html><body><script>window.parent.postMessage(' + payload + ', "*");</script></body></html>')
+  return HtmlService.createHtmlOutput('<!doctype html><html><body><script>window.top.postMessage(' + payload + ', "*");</script></body></html>')
     .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
 }
 function doPost(e) {
@@ -130,8 +130,10 @@ function doPost(e) {
     if (!sheet) throw new Error('Sheet tabs are missing. Run setup() in Apps Script first.');
     sheet.appendRow(row);
     rowSaved = true;
-    MailApp.sendEmail(OWNER_EMAIL,subject,body);
-    return htmlResponse({ok:true,message:'Submission saved.'}, formToken);
+    let notificationSent = true;
+    try { MailApp.sendEmail(OWNER_EMAIL,subject,body); }
+    catch (mailError) { notificationSent = false; console.error('Notification email failed: ' + mailError); }
+    return htmlResponse({ok:true,message:'Submission saved.',notificationSent}, formToken);
   } catch (err) {
     if (!rowSaved) uploadedFiles.forEach(file => { try { file.setTrashed(true); } catch (_) {} });
     return htmlResponse({ok:false,error:String(err.message || err)}, formToken);
