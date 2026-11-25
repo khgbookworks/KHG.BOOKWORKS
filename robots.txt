@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /projects.html
+
+Sitemap: https://khgbookworks.github.io/KHG.BOOKWORKS/sitemap.xml
