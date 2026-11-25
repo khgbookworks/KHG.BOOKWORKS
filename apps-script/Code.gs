@@ -54,7 +54,17 @@ function doGet(e) {
       } catch (_) {
         if (stored) images = [stored];
       }
-      return {...row, images: images.filter(Boolean)};
+      const publicImages = images.filter(Boolean).map(value => {
+        if (/^https?:\/\//i.test(value)) return value; // Existing URL-based submissions.
+        try {
+          const file = DriveApp.getFileById(value);
+          file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
+          return 'https://drive.google.com/thumbnail?id=' + file.getId() + '&sz=w1600';
+        } catch (_) {
+          return '';
+        }
+      }).filter(Boolean);
+      return {...row, images: publicImages};
     });
   const key = action === 'reviews' ? 'reviews' : 'projects';
   return json({ok:true,[key]:items}, callback);
@@ -108,8 +118,7 @@ function doPost(e) {
         const filename = clean(item.name || ('project-image-' + (index + 1)), 100).replace(/[^a-zA-Z0-9._-]/g, '_');
         const file = folder.createFile(Utilities.newBlob(bytes, mime, filename || ('project-image-' + (index + 1))));
         uploadedFiles.push(file);
-        file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
-        return 'https://drive.google.com/thumbnail?id=' + file.getId() + '&sz=w1600';
+        return file.getId();
       });
       sheet = ss.getSheetByName('Projects');
       row = [new Date(),clean(data.name,100),clean(data.title,160),clean(data.service,100),JSON.stringify(imageUrls),clean(data.description,500),String(data.consent),'Pending'];
