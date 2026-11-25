@@ -2,7 +2,7 @@
 Premium author-services portfolio built as a lightweight static website with a Google Apps Script backend.
 
 ## Pages
-Home, About, Services, Pricing, Portfolio, Reviews and Contact.
+Home, About, Services, Pricing, Portfolio, Reviews, Contact and Privacy.
 
 ## Brand
 Royal blue, white and restrained gold accents. Responsive layout, animated cover presentations, accessible navigation and reduced-motion support.
@@ -25,10 +25,13 @@ Project requests, reviews and project submissions are emailed to khg.bookworks@g
 The GA4 measurement ID is configured in `js/config.js`. Confirm that the measurement ID belongs to the intended GA4 property.
 
 ## Portrait and cover assets
-The portrait file is expected at `assets/harun.png`. Add the original portrait there to display it on About. Cover concept artwork is supplied as editable SVG files under `assets/covers/`. The From Hawking to Potential SVG is a simplified vector recreation of the supplied cover layout; replace it with the original high-resolution cover artwork when available.
+The portrait file is configured as `harun.png` in the repository root (`js/config.js`). Keep that path in sync if you move the image. Cover concept artwork is supplied as editable SVG files under `assets/covers/`. The From Hawking to Potential SVG is a simplified vector recreation of the supplied cover layout; replace it with the original high-resolution cover artwork when available.
 
 ## Deploy
-This is a static site. GitHub Pages or Netlify can publish the repository root. Configure the deployment to use the `main` branch after the rebuild pull request has been reviewed and merged. Do not publish the placeholder Apps Script URL; deploy the script first and replace it in config.js.
+This is a static site. GitHub Pages or Netlify can publish the repository root. Configure GitHub Pages to publish the repository root from the `main` branch. Do not publish the placeholder Apps Script URL; deploy the script first and replace it in config.js.
+
+## Search and privacy
+The site includes `robots.txt` and `sitemap.xml`. Update the sitemap if page URLs change. The Privacy page describes the current form, Google Analytics, Google Sheets and Google Drive workflows. Review it periodically against the actual data practices and applicable law.
 
 ## Security
 No spreadsheet ID, OAuth secret or private token belongs in frontend code. Review and project moderation are performed in the private Google Sheet. Public endpoints return approved entries only.
