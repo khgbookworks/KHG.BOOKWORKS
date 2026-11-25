@@ -61,3 +61,13 @@
 @keyframes viewerGlow{from{transform:translate3d(-3%,0,0) scale(.9)}to{transform:translate3d(5%,4%,0) scale(1.12)}}
 @media(prefers-reduced-motion:reduce){.workViewerBackdrop:before,.workViewerBackdrop:after{animation:none}.workViewerPanel,.viewerGallery img{animation:none}}
 @media(max-width:620px){.projectCarousel{height:380px}.workViewerPanel{max-height:94vh;border-radius:20px}.viewerGallery{grid-template-columns:1fr}}
+
+
+/* Published starting rates and pricing calculator */
+.pricingRateList{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin:0 0 2.5rem}
+.pricingRateList article{padding:1.35rem;border:1px solid var(--line);border-radius:18px;background:#fff;box-shadow:var(--shadow)}
+.pricingRateList h3{font-size:1.12rem;margin:0 0 .55rem}
+.pricingRateList strong{color:var(--blue);font-size:1.12rem}
+.calcGrid{display:grid;grid-template-columns:1.2fr .8fr;gap:1.5rem;align-items:stretch}
+@media(max-width:900px){.pricingRateList{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.pricingRateList{grid-template-columns:1fr}}
