@@ -5,5 +5,5 @@ window.KHG={API:"https://script.google.com/macros/s/AKfycbzq3MwI4Q9vwLWt-XyvasKO
 {title:"Secrets of the Gilded Parlor",category:"Historical Mystery",image:"assets/covers/gilded-parlor.svg",description:"A richly toned mystery concept with a vintage parlor motif and classic title treatment.",kind:"Concept"},
 {title:"The Velocity of Solitude",category:"Literary Fiction",image:"assets/covers/velocity-of-solitude.svg",description:"A minimal literary direction focused on movement, isolation and a strong typographic voice.",kind:"Concept"},
 {title:"The Architecture of Clarity",category:"Non-fiction",image:"assets/covers/architecture-of-clarity.svg",description:"A clean non-fiction concept with architectural linework and confident hierarchy.",kind:"Concept"},
-{title:"From Hawking to Potential",category:"Personal Development",image:"assets/covers/from-hawking-to-potential.svg",description:"A personal story about a boy from a royal family who sold on the street and learned to win with potential.",kind:"Author Book"}
+
 ],SERVICES:["Developmental Editing","Line Editing","Copy Editing","Proofreading","Editorial Assessment","Beta Reading","Book Interior Formatting","Book Cover Design","Book Trailers","Ghostwriting","Book Promotion","Author Branding"]};
